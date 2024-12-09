@@ -1,4 +1,4 @@
-import {View, Text, Image, StyleSheet, Dimensions} from "react-native";
+import {View, Text, Image, StyleSheet, Dimensions, TouchableOpacity} from "react-native";
 import React from "react";
 
 const {width,height} = Dimensions.get("window");
@@ -7,14 +7,19 @@ type props = {
     style?: object;
     nom: string;
     estFavori: boolean;
+
+    afficherTeam?: ()=>void
+
 }
 
-export function FicheTeam({style, nom, estFavori}: props) {
+export function FicheTeam({style, nom, estFavori,afficherTeam}: props) {
     return(
-        <View style={styles.fiche}>
-            <Text style={styles.nomTeam}>{nom}</Text>
-            <Image source={estFavori ? require('../../assets/etoile.png') : require('../../assets/etoileEmpty.png')} style={{height:50,width:50}}/>
-        </View>
+        <TouchableOpacity style={style} onPress={afficherTeam}>
+            <View style={styles.fiche}>
+                <Text style={styles.nomTeam}>{nom}</Text>
+                <Image source={estFavori ? require('../../assets/etoile.png') : require('../../assets/etoileEmpty.png')} style={{height:50,width:50}}/>
+            </View>
+        </TouchableOpacity>
     )
 }
 

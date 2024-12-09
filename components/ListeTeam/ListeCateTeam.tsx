@@ -5,15 +5,17 @@ type props ={
     style?:object;
     nom:string;
     listeTeams?:Array<[string,boolean]>;
+    afficherTeam?: (index:number)=>void
+
 
 }
 
-export function ListeCateTeam({style,nom,listeTeams}: props  ){
+export function ListeCateTeam({style,nom,listeTeams,afficherTeam}: props  ){
     return(
         <View style={styles.cateTeam}>
             <Text style={styles.nomCate} >{nom}</Text>
             <View style={styles.listeTeam}>
-            {listeTeams?.map(([team,estFavori], index) => <FicheTeam key={index} nom={team} estFavori={estFavori}/>)}
+            {listeTeams?.map(([team,estFavori], index) => <FicheTeam key={index} nom={team} estFavori={estFavori}  afficherTeam={() => afficherTeam(index)}/>)}
             </View>
         </View>
     )

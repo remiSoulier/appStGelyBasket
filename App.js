@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HeaderSgb } from "./components/HeaderSgb";
@@ -8,11 +8,13 @@ import { Article } from "./components/Article";
 import { useState } from "react";
 import logo from './assets/header/sgbLogo.png';
 import homeIcon from './assets/footer/home_1946488.png';
-import teamsIcon from './assets/footer/candidates_2258579.png';
+import teamsIcon from './assets/footer/team.png';
 import gamesIcon from './assets/footer/basketball-court_1202943.png';
 import profileIcon from './assets/footer/user_1077063.png';
-import {ListeTeams} from "./components/ListeTeam/ListeTeams";
 import {None} from "./components/None";
+import {ApercuTeam} from "./components/DetailTeam/ApercuTeam";
+import {DetailTeam} from "./components/DetailTeam/DetailTeam";
+import {ListeTeams} from "./components/ListeTeam/ListeTeams";
 
 
 function HomeScreen(navigation) {
@@ -24,11 +26,14 @@ export default function App() {
     const [accueilVisible, setAccueilVisible] = useState(true);
     const [teamsVisible, setTeamsVisible] = useState(false);
     const [articleVisible, setArticleVisible] = useState(false);
+    const [detailTeamVisible, setDetailTeamVisible] = useState(false);
     const [indexArticle, setIndexArticle] = useState(0);
+    const [indexTeam, setIndexTeam] = useState(0);
     const afficherAccueil = () => {
         setAccueilVisible(true);
         setTeamsVisible(false);
         setArticleVisible(false);
+        setDetailTeamVisible(false);
     }
 
     const afficherArticle = (index) => {
@@ -37,6 +42,7 @@ export default function App() {
         setAccueilVisible(false);
         setTeamsVisible(false);
         setArticleVisible(true);
+        setDetailTeamVisible(false);
 
     }
 
@@ -44,6 +50,15 @@ export default function App() {
         setAccueilVisible(false);
         setTeamsVisible(true);
         setArticleVisible(false);
+        setDetailTeamVisible(false);
+    }
+
+    const afficherDetailTeam = (index) => {
+        setIndexTeam(index);
+        setAccueilVisible(false);
+        setTeamsVisible(false);
+        setArticleVisible(false);
+        setDetailTeamVisible(true);
     }
 
     const Stack = createStackNavigator();
@@ -56,17 +71,28 @@ export default function App() {
                 </SafeAreaView>
 
                 <SafeAreaView style={styles.container}>
+
+
                     {accueilVisible ? <Accueil afficherArticle={afficherArticle} /> : <None/>}
                     {articleVisible ? <Article index={indexArticle} />:<None/>}
-                    {teamsVisible ? <ListeTeams/>:<None/>}
+                    {teamsVisible ? <ListeTeams afficherTeam={afficherDetailTeam}/>:<None/>}
+                    {detailTeamVisible ? <DetailTeam index={indexTeam} />:<None/>}
 
                 </SafeAreaView>
 
                 <SafeAreaView style={styles.footer}>
-                    <Button title={'Home'} source={homeIcon} style={styles.footerIcon} onPress={afficherAccueil} />
-                    <Button title={'Teams'} source={teamsIcon} style={styles.footerIcon} onPress={afficherTeam} />
-                    <Button title={'Games'} source={gamesIcon} style={styles.footerIcon} />
-                    <Button title={'Profile'} source={profileIcon} style={styles.footerIcon} />
+                    <TouchableOpacity onPress={afficherAccueil}>
+                        <Image source={homeIcon} style={styles.footerIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={afficherTeam}>
+                        <Image source={teamsIcon} style={[styles.footerIcon,{height: 25}]} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={gamesIcon} style={styles.footerIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={profileIcon} style={styles.footerIcon} />
+                    </TouchableOpacity>
                 </SafeAreaView>
 
                 <StatusBar style="auto" />
@@ -93,14 +119,14 @@ const styles = StyleSheet.create({
     },
     footer: {
         backgroundColor: '#109664',
-        flex: 1 / 10,
+        flex: 1 / 11,
         flexDirection: 'row',
         alignItems: 'center',
         bottom: 0,
         justifyContent: 'space-evenly',
     },
     footerIcon: {
-        width: 50,
-        height: 50,
+        width: 40,
+        height: 40,
     },
 });
