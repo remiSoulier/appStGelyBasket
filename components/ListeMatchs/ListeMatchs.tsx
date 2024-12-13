@@ -4,6 +4,7 @@ import React, {useRef, useEffect} from "react";
 import {DateTab} from "./DateTab";
 
 type Match = {
+    categorie: string;j
     equipe1: string;
     equipe2: string;
     score1: number;
@@ -50,7 +51,8 @@ export function ListeMatchs  ({ matchs }: props)  {
             </ScrollView>
             <ScrollView showsVerticalScrollIndicator={false} >
                 {matchs.find(match => match.date === selectedTab)?.matchs.map((match, index) => (
-                    <FicheMatchListe key={index} equipe1={match.equipe1} equipe2={match.equipe2} score1={match.score1} score2={match.score2} date={selectedTab} heure={match.horaire}/>
+
+                    <FicheMatchListe key={index} equipe1={match.equipe1.match("ST GELY BASKETBALL")? match.categorie:match.equipe1} equipe2={match.equipe2.match("ST GELY BASKETBALL")? match.categorie:match.equipe2} score1={match.score1} score2={match.score2} date={selectedTab} heure={match.horaire}/>
                 ))}
             </ScrollView>
         </SafeAreaView>
