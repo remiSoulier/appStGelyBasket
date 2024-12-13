@@ -14,7 +14,7 @@ export function ListeArticles({style,afficherArticle}: props) {
     const navigation = useNavigation();
     return(
         <SafeAreaView style={style}>
-            <ScrollView contentContainerStyle={styles.scrollViewArticle}>
+            <ScrollView contentContainerStyle={styles.scrollViewArticle} showsVerticalScrollIndicator={false}>
                 <FicheArticle title="Article 1" image={require('../../assets/articles/image.png')} style={styles.article} onPress={() => afficherArticle(1)}/>
                 <FicheArticle title="Article 2" image={require('../../assets/articles/image.png')} style={styles.article} onPress={() => afficherArticle(2)}/>
                 <FicheArticle title="Article 3" image={require('../../assets/articles/image.png')} style={styles.article} onPress={() => afficherArticle(3)}/>

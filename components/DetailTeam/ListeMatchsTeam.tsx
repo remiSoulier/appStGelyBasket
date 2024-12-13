@@ -21,7 +21,7 @@ type props = {
 export function ListeMatchsTeam({index,data}: props) {
     return(
     <SafeAreaView style={{flex:8/9}}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 {data.map((match, index) => (
                     match.equipe1 === null || match.equipe2 === null ?
                     <None/>

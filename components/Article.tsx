@@ -8,7 +8,7 @@ type props = {
 export function Article({style,index}: props) {
     return(
         <SafeAreaView style={styles.view}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={styles.title}>Article {index}</Text>
                 <Text>Contenu de l'article</Text>
                 <Text style={styles.article}>

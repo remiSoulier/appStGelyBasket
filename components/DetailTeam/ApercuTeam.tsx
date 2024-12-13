@@ -13,7 +13,7 @@ type props = {
 export function ApercuTeam({style,index,classemnt}: props) {
     return(
         <SafeAreaView style={ styles.view}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <ProchainMatch index={index}/>
                 <FormeActuelle index={index}/>
                 <ExtraitClassement data={classemnt}/>

@@ -16,7 +16,7 @@ export function Classement({ data }: Props) {
     console.log(Dimensions.get('window').width);
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
                 {data.map((team, index) => (
                     <View key={index} style={team.libelle==="ST GELY BASKETBALL"? [styles.tableRow,{backgroundColor: "#109664"}]:styles.tableRow}>

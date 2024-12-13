@@ -25,9 +25,10 @@ export function FicheMatchListe({equipe1, equipe2, score1, score2, date, heure}:
                         <Text>{score2}</Text>
                     </View>
                 :
+
                     <View style={[styles.elements,{width:'30%', marginLeft:0 }]}>
                         <Text>{date.split("-").reverse().join("/")}</Text>
-                        <Text>{heure.slice(0,2)}h{heure.slice(2)}</Text>
+                        {heure ? <Text>{heure.slice(0,2)}h{heure.slice(2)}</Text> : null}
                     </View>
                 }
 

@@ -28,7 +28,7 @@ export function ExtraitClassement({data}: props) {
 
     return(
         <SafeAreaView style={styles.view}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View  style={styles.tableRow}>
                     <View style={styles.team}>
                         <Text style={styles.cellText}>{team1.position} -</Text>
